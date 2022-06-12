@@ -11,4 +11,4 @@ RUN apt-get update \
 # Set locale
 ENV LANG C.UTF-8
 
-RUN stack --numeric-version
+RUN stack build yesod-bin
