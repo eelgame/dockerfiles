@@ -9,3 +9,9 @@ RUN apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable
 RUN apt update
 RUN apt install -y mono-complete
 RUN mono --version
+
+RUN apt install -y wget
+RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb
+RUN apt update && apt install -y dotnet-sdk-6.0
+RUN dotnet --version
+
