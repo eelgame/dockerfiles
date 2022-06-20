@@ -7,6 +7,8 @@ RUN apt-get update \
     && apt-get install -y zlib1g-dev libtinfo-dev \
     && curl -sSL https://get.haskellstack.org/ | sh \
     && apt clean && rm -rf /var/lib/apt/lists/*
+    
+stack build yesod-bin
 
 # Set locale
 ENV LANG C.UTF-8
