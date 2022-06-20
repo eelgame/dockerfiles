@@ -8,7 +8,7 @@ RUN apt-get update \
     && curl -sSL https://get.haskellstack.org/ | sh \
     && apt clean && rm -rf /var/lib/apt/lists/*
     
-stack build yesod-bin
+RUN stack build yesod-bin
 
 # Set locale
 ENV LANG C.UTF-8
