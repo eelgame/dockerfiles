@@ -1,0 +1,2 @@
+FROM nyamisty/docker-wine-ida:7.7sp1
+
