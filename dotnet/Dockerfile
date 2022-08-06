@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 WORKDIR /root
+ARG NDK_VER=r23c
 ARG ANDROID_SDK_ROOT=/usr/lib/android-sdk
 ARG HOST_OS=linux
 ARG HOST_OS_SHORT=linux
@@ -16,3 +17,4 @@ unzip /root/asdk.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && rm -rf /root/asdk.z
 RUN yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --licenses && \
 ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-${SDK_API_LEVEL}" "build-tools;${SDK_BUILD_TOOLS}"
 RUN ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager ndk-bundle
+RUN export ANDROID_NDK_ROOT=/root/android-ndk-${NDK_VER} && curl https://dl.google.com/android/repository/android-ndk-${NDK_VER}-${HOST_OS}.zip -L --output /root/andk.zip && unzip /root/andk.zip -d $(dirname ${ANDROID_NDK_ROOT}) && rm -rf /root/andk.zip
