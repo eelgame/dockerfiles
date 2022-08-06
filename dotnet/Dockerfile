@@ -11,8 +11,13 @@ ARG SDK_BUILD_TOOLS=29.0.3
 
 RUN apt update && apt install -y curl zip unzip android-sdk cmake
 RUN apt install -y locales
-RUN locale-gen en_US.UTF-8
-RUN dpkg-reconfigure locales
+
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+
+ENV LANG en_US.UTF-8
+
 RUN apt install -y python3 python3-pip
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN \
