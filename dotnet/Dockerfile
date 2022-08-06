@@ -10,6 +10,9 @@ ARG SDK_API_LEVEL=29
 ARG SDK_BUILD_TOOLS=29.0.3
 
 RUN apt update && apt install -y curl zip unzip android-sdk cmake
+RUN apt install -y locales
+RUN locale-gen en_US.UTF-8
+RUN dpkg-reconfigure locales
 RUN apt install -y python3 python3-pip
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN \
