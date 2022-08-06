@@ -10,6 +10,8 @@ ARG SDK_API_LEVEL=29
 ARG SDK_BUILD_TOOLS=29.0.3
 
 RUN apt update && apt install -y curl zip unzip android-sdk cmake
+RUN apt install -y python3 python3-pip
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN \
 curl https://dl.google.com/android/repository/commandlinetools-${HOST_OS_SHORT}-${SDK_VER}.zip -L --output /root/asdk.zip && \
 unzip /root/asdk.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && rm -rf /root/asdk.zip && mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest
